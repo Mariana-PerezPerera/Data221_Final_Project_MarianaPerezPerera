@@ -7,3 +7,12 @@ import pandas as pd
 #loading in the dataset:
 student_alcohol_df = pd.read_csv('student-mat.csv')
 
+#selecting the propper/key features we are using:
+selected_features = [
+    #the parents background:
+    'Medu', 'Fedu', 'Mjob', 'Fjob',
+    #the living conditions:
+    'address', 'Pstatus', 'traveltime', 'internet',
+    #the family demographics:
+    'famsup', 'famsize', 'famrel'
+]
