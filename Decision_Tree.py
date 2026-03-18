@@ -3,3 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 import pandas as pd
+
+#loading in the dataset:
+student_alcohol_df = pd.read_csv('student-mat.csv')
+
