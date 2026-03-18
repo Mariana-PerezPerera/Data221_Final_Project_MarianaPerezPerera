@@ -19,3 +19,7 @@ selected_features = [
 
 #creating the target variable which is G3:
 target_variable = 'G3'
+
+#now we have make sure we are not including everything else (removing the leakage)
+x = student_alcohol_df[selected_features]
+y= student_alcohol_df[target_variable]
