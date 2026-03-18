@@ -16,3 +16,6 @@ selected_features = [
     #the family demographics:
     'famsup', 'famsize', 'famrel'
 ]
+
+#creating the target variable which is G3:
+target_variable = 'G3'
