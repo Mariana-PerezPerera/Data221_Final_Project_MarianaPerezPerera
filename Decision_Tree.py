@@ -1,8 +1,10 @@
 #importing the needed packages:
+from pyexpat import model
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import accuracy_score, mean_squared_error
 import pandas as pd
+from sklearn.metrics import r2_score
 
 #loading in the dataset:
 student_alcohol_df = pd.read_csv('student-mat.csv')
@@ -26,7 +28,7 @@ y= student_alcohol_df[target_variable]
 
 #converting the categorical values into numerical:
 #converting address: (U-values=1 and R-values=0)
-x["adress"] = x["adress"].map({"U":1, "R":0})
+x["address"] = x["address"].map({"U":1, "R":0})
 #famsize: (LE3=1 and GT3=0)
 x["famsize"] = x["famsize"].map({"LE3":1, "GT3":0})
 #Pstatus: (T=1, A=0)
@@ -39,11 +41,35 @@ x["internet"] = x["internet"].map({"yes":1, "no":0})
 x = pd.get_dummies(x, columns=["Mjob", "Fjob"], drop_first=True)
 
 
-# x["Mjob"] = x["Mjob"].map({"teacher":1, "health":2, "services":3, "at_home":4, "other":5})
-
-
-
-
-
 #train/test splitting into 80/20
 x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2, random_state=42)
+
+#creating the controlled model:
+decision_tree_regressor = DecisionTreeRegressor(
+    max_depth=3,
+    min_samples_leaf = 5,
+    min_samples_split=10,
+    random_state=42
+)
+
+#training the model:
+decision_tree_regressor.fit(x_train, y_train)
+
+#evaluating the model:
+#predictions on test and train:
+#train:
+train_predictions = decision_tree_regressor.predict(x_train)
+#test:
+test_predictions = decision_tree_regressor.predict(x_test)
+
+#mean_squared_error on both:
+#train:
+train_mean_squared_error = mean_squared_error(y_train, train_predictions, squared=False)
+#test:
+test_mean_squared_error = mean_squared_error(y_test, test_predictions, squared=False)
+
+#R squared:
+#train:
+train_r2 = r2_score(y_train, train_predictions)
+#test:
+test_r2 = r2_score(y_test, test_predictions)
