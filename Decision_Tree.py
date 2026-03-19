@@ -31,6 +31,12 @@ x["adress"] = x["adress"].map({"U":1, "R":0})
 x["famsize"] = x["famsize"].map({"LE3":1, "GT3":0})
 #Pstatus: (T=1, A=0)
 x["Pstatus"] = x["Pstatus"].map({"T":1, "A": 0})
+#famsup: (yes=1 and no=0)
+x["famsup"] = x["famsup"].map({"yes":1, "no":0})
+
+# #Mjob:
+# x["Mjob"] = x["Mjob"].map({"teacher":1, "health":2, "services":3, "at_home":4, "other":5})
+
 
 
 
