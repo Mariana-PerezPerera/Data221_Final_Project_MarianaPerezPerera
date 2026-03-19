@@ -23,3 +23,6 @@ target_variable = 'G3'
 #now we have make sure we are not including everything else (removing the leakage)
 x = student_alcohol_df[selected_features]
 y= student_alcohol_df[target_variable]
+
+#train/test splitting into 80/20
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2, random_state=42)
