@@ -29,6 +29,8 @@ y= student_alcohol_df[target_variable]
 x["adress"] = x["adress"].map({"U":1, "R":0})
 #famsize: (LE3=1 and GT3=0)
 x["famsize"] = x["famsize"].map({"LE3":1, "GT3":0})
+#Pstatus: (T=1, A=0)
+x["Pstatus"] = x["Pstatus"].map({"T":1, "A": 0})
 
 
 
