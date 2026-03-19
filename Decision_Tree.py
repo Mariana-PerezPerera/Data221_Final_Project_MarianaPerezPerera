@@ -35,7 +35,10 @@ x["Pstatus"] = x["Pstatus"].map({"T":1, "A": 0})
 x["famsup"] = x["famsup"].map({"yes":1, "no":0})
 #internet: (yes=1 and no=0)
 x["internet"] = x["internet"].map({"yes":1, "no":0})
-# #Mjob:
+#doing Mjob and Fjob together because they have multiple different categorical answers instead of just 2:
+x = pd.get_dummies(x, columns=["Mjob", "Fjob"], drop_first=True)
+
+
 # x["Mjob"] = x["Mjob"].map({"teacher":1, "health":2, "services":3, "at_home":4, "other":5})
 
 
