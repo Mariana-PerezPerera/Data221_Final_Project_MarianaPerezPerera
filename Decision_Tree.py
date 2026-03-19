@@ -73,3 +73,11 @@ test_mean_squared_error = mean_squared_error(y_test, test_predictions, squared=F
 train_r2 = r2_score(y_train, train_predictions)
 #test:
 test_r2 = r2_score(y_test, test_predictions)
+
+#printing each one:
+#training and testing RMSE:
+print("The training mean squared error is ", train_mean_squared_error)
+print("The test mean squared error is ", test_mean_squared_error)
+#training and test R squared:
+print("The training r-squared is ", train_r2)
+print("The test r-squared is ", test_r2)
