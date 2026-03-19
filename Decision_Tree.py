@@ -25,8 +25,13 @@ x = student_alcohol_df[selected_features]
 y= student_alcohol_df[target_variable]
 
 #converting the categorical values into numerical:
-#converting address:
+#converting address: (U-values=1 and R-values=0)
 x["adress"] = x["adress"].map({"U":1, "R":0})
+#famsize: (LE3=1 and GT3=0)
+x["famsize"] = x["famsize"].map({"LE3":1, "GT3":0})
+
+
+
 
 #train/test splitting into 80/20
 x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2, random_state=42)
