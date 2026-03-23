@@ -5,6 +5,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import accuracy_score, mean_squared_error
 import pandas as pd
 from sklearn.metrics import r2_score
+import numpy as np
 
 #loading in the dataset:
 student_alcohol_df = pd.read_csv('student-mat.csv')
@@ -46,9 +47,9 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2, random_s
 
 #creating the controlled model:
 decision_tree_regressor = DecisionTreeRegressor(
-    max_depth=3,
-    min_samples_leaf = 5,
-    min_samples_split=10,
+    max_depth=6,
+    min_samples_leaf = 3,
+    min_samples_split=8,
     random_state=42
 )
 
@@ -63,12 +64,15 @@ train_predictions = decision_tree_regressor.predict(x_train)
 test_predictions = decision_tree_regressor.predict(x_test)
 
 #mean_squared_error on both:
-#train:
-train_mean_squared_error = mean_squared_error(y_train, train_predictions, squared=False)
-#test:
-test_mean_squared_error = mean_squared_error(y_test, test_predictions, squared=False)
+#Train:
+train_mse = mean_squared_error(y_train, train_predictions)
+train_rmse = np.sqrt(train_mse)
 
-#R squared:
+#Test:
+test_mse = mean_squared_error(y_test, test_predictions)
+test_rmse = np.sqrt(test_mse)
+
+
 #train:
 train_r2 = r2_score(y_train, train_predictions)
 #test:
@@ -76,8 +80,10 @@ test_r2 = r2_score(y_test, test_predictions)
 
 #printing each one:
 #training and testing RMSE:
-print("The training mean squared error is ", train_mean_squared_error)
-print("The test mean squared error is ", test_mean_squared_error)
+print("The training mean squared error is ", train_rmse)
+print("The test mean squared error is ", test_rmse)
 #training and test R squared:
 print("The training r-squared is ", train_r2)
 print("The test r-squared is ", test_r2)
+
+#feature importance:
