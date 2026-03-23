@@ -47,7 +47,9 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2, random_s
 
 #creating the controlled model:
 decision_tree_regressor = DecisionTreeRegressor(
+    #moderate depth for best results:
     max_depth=4,
+    #greater than one to help generalization:
     min_samples_leaf = 5,
     min_samples_split=10,
     random_state=42
