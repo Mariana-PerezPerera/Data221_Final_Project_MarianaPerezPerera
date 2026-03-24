@@ -85,7 +85,14 @@ test_r2 = r2_score(y_test, test_predictions)
 print("The training mean squared error is ", train_rmse)
 print("The test mean squared error is ", test_rmse)
 #training and test R squared:
-print("The training r-squared is ", train_r2)
+print("\nThe training r-squared is ", train_r2)
 print("The test r-squared is ", test_r2)
 
 #feature importance:
+importance = pd.Series(
+    decision_tree_regressor.feature_importances_,
+    index=x.columns
+).sort_values(ascending=False)
+
+#printing the importance:
+print("\nThe feature importance:\n", importance)
